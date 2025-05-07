@@ -514,28 +514,28 @@
         const pilotForm = document.getElementById('pilotForm');
         
         pilotForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Get form data
-            const formData = new FormData(pilotForm);
-            const formDataObj = {};
-            formData.forEach((value, key) => {
-                formDataObj[key] = value;
-            });
-            
-            // In a real application, you would send this data to your server
-            console.log('Form submitted with data:', formDataObj);
-            
-            // Show success message
+        e.preventDefault();
+
+        const formData = new FormData(pilotForm);
+        const formDataObj = {};
+        formData.forEach((value, key) => formDataObj[key] = value);
+
+        fetch("https://script.google.com/macros/s/AKfycbzSe78h8BrAavQed14kwWB9a1pgRnvV5aKZXiBjqAv6U7P6XN6MLV4jm2smEDROHuc/exec", {
+            method: "POST",
+            body: JSON.stringify(formDataObj),
+            headers: {
+            "Content-Type": "application/json"
+            }
+        })
+        .then(res => res.json())
+        .then(data => {
             pilotForm.innerHTML = `
-                <div class="text-center py-8">
-                    <svg class="w-16 h-16 text-green-500 mx-auto mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                    </svg>
-                    <h3 class="text-xl font-bold text-gray-800 mb-2">Cadastro realizado com sucesso!</h3>
-                    <p class="text-gray-600">Entraremos em contato em breve para os próximos passos.</p>
-                </div>
+            <div class="text-center py-8">
+                <h3 class="text-xl font-bold text-gray-800 mb-2">Cadastro enviado com sucesso!</h3>
+                <p class="text-gray-600">Verifique sua caixa de entrada em breve.</p>
+            </div>
             `;
+        });
         });
     </script>
 <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'93acfc62c5cf1b0e',t:'MTc0NjQxNDAwOC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='../../cdn-cgi/challenge-platform/h/g/scripts/jsd/8b139538fc64/maind41d.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
