@@ -1,0 +1,9 @@
+
+services:
+  - type: web
+    name: cripto-precos
+    env: python
+    buildCommand: ""
+    startCommand: "python server/app.py"
+    plan: free
+    region: oregon
